@@ -1,75 +1,49 @@
-# Nuxt 3 Minimal Starter
+# Sistema Agricula
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Esquema
+```mermaid
+classDiagram
+
+    Produto <|-- Fornecedor
+
+    class Produto {
+        -id: int
+        -codigo: int
+        -nome: String
+        -descricao: string
+        -tipo: String
+        -lote: int
+        -NF: int
+        -numero_pedido: int
+        -quantidade: int
+        -data_validade: Date
+        -fornecedor_id: int
+    }
+
+    class Fornecedor {
+        - id: int
+        - nome: String
+    }
+    
+    class Funcionario {
+      -id: int 
+      -nome: String 
+      -email: String  
+    }
+
+```
 
 ## Setup
 
-Make sure to install the dependencies:
-
+Instalar dependencias
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm i
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+Rodar servidor de desenvolvimento
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
+Build para produção
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
