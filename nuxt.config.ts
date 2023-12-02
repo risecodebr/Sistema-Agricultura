@@ -28,5 +28,8 @@ export default defineNuxtConfig({
   },
   css:[
     'bootstrap/dist/css/bootstrap.css',
-  ]
-})
+  ],
+  plugins: [
+    '~/plugins/useBootstrap.client.ts',
+  ],
+}) 
