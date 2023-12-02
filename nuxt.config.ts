@@ -28,8 +28,10 @@ export default defineNuxtConfig({
   },
   css:[
     'bootstrap/dist/css/bootstrap.css',
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   plugins: [
     '~/plugins/useBootstrap.client.ts',
+    '~/plugins/font-awesome.ts',
   ],
 }) 
