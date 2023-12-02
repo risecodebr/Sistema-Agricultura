@@ -8,6 +8,7 @@
                 <h1 class="display-4">Sistema Agrícola</h1>
             </div>
             <div class="card-body">
+                <nuxt-link to="/dashboard" class="btn btn-primary">Dashboard</nuxt-link>
                 <form>
                     <h3 class="mb-3 font-weight-normal">Iniciar Sessão</h3>
                     <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email" required autofocus>
