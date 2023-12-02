@@ -1,35 +1,31 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@vite-pwa/nuxt'],
+  modules: ["@vite-pwa/nuxt", "nuxt-auth-utils"],
   pwa: {
     manifest: {
-      name: 'Sistema Agrícola',
-      short_name: 'Sistema Agrícola',
-      description: 'Sistema Agrícola Criado com NuxtJS',
-      display: 'standalone',
-      theme_color: '#ffffff',
-      lang: 'en',
+      name: "Sistema Agrícola",
+      short_name: "Sistema Agrícola",
+      description: "Sistema Agrícola Criado com NuxtJS",
+      display: "standalone",
+      theme_color: "#ffffff",
+      lang: "en",
       icons: [
         {
           src: "icons/icon.png",
-          sizes: '512x512',
-          type: 'image/png',
+          sizes: "512x512",
+          type: "image/png",
         },
       ],
     },
   },
   workbox: {
-    navigateFallback: '/',
+    navigateFallback: "/",
   },
   devOptions: {
     enabled: true,
-    type: 'module',
+    type: "module",
   },
-  css:[
-    'bootstrap/dist/css/bootstrap.css',
-  ],
-  plugins: [
-    '~/plugins/useBootstrap.client.ts',
-  ],
-}) 
+  css: ["bootstrap/dist/css/bootstrap.css"],
+  plugins: ["~/plugins/useBootstrap.client.ts"],
+});
