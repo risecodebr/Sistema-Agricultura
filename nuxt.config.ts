@@ -4,16 +4,16 @@ export default defineNuxtConfig({
   modules: ['@vite-pwa/nuxt'],
   pwa: {
     manifest: {
-      name: 'Nuxt Vite',
-      short_name: 'Nuxt Vite',
-      description: 'Nuxt Vite PWA',
+      name: 'Sistema Agrícola',
+      short_name: 'Sistema Agrícola',
+      description: 'Sistema Agrícola Criado com NuxtJS',
       display: 'standalone',
       theme_color: '#ffffff',
       lang: 'en',
       icons: [
         {
           src: "icons/icon.png",
-          sizes: '256x256',
+          sizes: '512x512',
           type: 'image/png',
         },
       ],
@@ -25,5 +25,11 @@ export default defineNuxtConfig({
   devOptions: {
     enabled: true,
     type: 'module',
-  }
-})
+  },
+  css:[
+    'bootstrap/dist/css/bootstrap.css',
+  ],
+  plugins: [
+    '~/plugins/useBootstrap.client.ts',
+  ],
+}) 
