@@ -26,6 +26,12 @@ export default defineNuxtConfig({
     enabled: true,
     type: "module",
   },
-  css: ["bootstrap/dist/css/bootstrap.css"],
-  plugins: ["~/plugins/useBootstrap.client.ts"],
-});
+  css:[
+    'bootstrap/dist/css/bootstrap.css',
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
+  plugins: [
+    '~/plugins/useBootstrap.client.ts',
+    '~/plugins/font-awesome.ts',
+  ],
+}) 

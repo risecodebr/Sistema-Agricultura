@@ -10,6 +10,11 @@
     "postinstall": "prisma generate && prisma migrate deploy && nuxt prepare"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/vue-fontawesome": "^3.0.5",
     "@nuxt/devtools": "latest",
     "@vite-pwa/nuxt": "^0.3.2",
     "nuxt": "^3.8.2",
