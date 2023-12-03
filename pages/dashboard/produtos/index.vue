@@ -1,13 +1,15 @@
 <script setup lang="ts">
-    let produtos = [
-        {
-            id: 1,
-            codigo: "123",
-            nome: "Produto 1",
-            preco: 10.00,
-            quantidade: 10,
-        },
-    ];
+
+const { data: produtos, refresh } = await useFetch('/api/v1/produtos');
+
+async function excluir(id: number) {
+    await useFetch(`/api/v1/produtos/${id}`, {
+        method: 'DELETE'
+    });
+
+    await refresh();
+}
+
 </script>
 <template>
     <NuxtLayout name="default">
@@ -30,20 +32,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="produto in produtos" :key="produto.id">
+                            <tr v-for="produto in produtos?.data" :key="produto.id">
                                 <td>{{ produto.codigo }}</td>
                                 <td>{{ produto.nome }}</td>
                                 <td>R${{ produto.preco }}</td>
                                 <td>{{ produto.quantidade }}</td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/produtos/${produto.id}`">
+                                    <nuxt-link :to="`/dashboard/produtos/editar/${produto.id}`">
                                         <font-awesome-icon icon="edit"></font-awesome-icon>
                                     </nuxt-link>
                                 </td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/produtos/excluir/${produto.id}`">
+                                    <a @click="excluir(produto.id)">
                                         <font-awesome-icon icon="trash"></font-awesome-icon>
-                                    </nuxt-link>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
