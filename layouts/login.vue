@@ -2,7 +2,7 @@
     import "../assets/css/login.scss";
 </script>
 <template>
-    <div class="main">
+    <div class="main-login">
         <slot />
     </div>
 </template>

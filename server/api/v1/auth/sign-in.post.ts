@@ -30,11 +30,9 @@ export default defineEventHandler(async (event) => {
 });
 
 async function emailIsValid(email: string) {
-  return (
-    (await prisma.funcionario.count({
+  return !!await prisma.funcionario.findFirst({
       where: {
         email: email,
       },
-    })) === 0
-  );
+    })
 }

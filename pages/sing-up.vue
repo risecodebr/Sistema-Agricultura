@@ -17,7 +17,7 @@ async function submit() {
         return
     }
 
-    navigateTo('/dashboard/home')
+    navigateTo('/dashboard')
 }
 
 </script>
