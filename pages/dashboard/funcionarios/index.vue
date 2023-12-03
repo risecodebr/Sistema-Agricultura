@@ -18,7 +18,7 @@ async function excluir(id: number) {
                 <div class="col-12 table-responsive-sm">
                     <div class="d-flex">
                         <h1>Funcionarios</h1>
-                        <nuxt-link to="/dashboard/funcionarios/novo" class="btn btn-primary ms-auto">Novo</nuxt-link>
+                        <NuxtLink to="/dashboard/funcionarios/novo" class="btn btn-primary ms-auto">Novo</NuxtLink>
                     </div>
                     <table class="table table-striped ">
                         <thead>
@@ -34,9 +34,9 @@ async function excluir(id: number) {
                                 <td>{{ funcionario.nome }}</td>
                                 <td>{{ funcionario.email }}</td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/funcionarios/editar/${funcionario.id}`">
+                                    <NuxtLink :to="`/dashboard/funcionarios/editar/${funcionario.id}`">
                                         <font-awesome-icon icon="edit"></font-awesome-icon>
-                                    </nuxt-link>
+                                    </NuxtLink>
                                 </td>
                                 <td>
                                     <a @click="excluir(funcionario.id)">
