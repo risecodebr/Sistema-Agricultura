@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     };
   }
 
-  if (!(await emailIsValid(email))) {
+  if (await emailIsValid(email)) {
     return { statusCode: 400, statusMessage: "Email já cadastrado!" };
   }
 
@@ -30,9 +30,9 @@ export default defineEventHandler(async (event) => {
 });
 
 async function emailIsValid(email: string) {
-  return !!await prisma.funcionario.findFirst({
-      where: {
-        email: email,
-      },
-    })
+  return !!(await prisma.funcionario.findFirst({
+    where: {
+      email: email,
+    },
+  }));
 }
