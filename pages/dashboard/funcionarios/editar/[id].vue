@@ -1,19 +1,24 @@
 <script setup lang="ts">
 
+const route = useRoute();
+
+const { data: funcionario } = await useFetch(`/api/v1/funcionarios/${route.params.id}`);
+
 const form = {
-    nome: '',
-    email: '',
-    password: '',
+    id: funcionario.value.data.id,
+    nome: funcionario.value.data.nome,
+    email: funcionario.value.data.email,
+    password: funcionario.value.data.password,
 }
 
 async function submit() {
-    const { data } = await useFetch('/api/v1/funcionarios/create', {
-        method: 'POST',
+    const { data } = await useFetch('/api/v1/funcionarios/update', {
+        method: 'PUT',
         body: JSON.stringify(form)
     });
 
     if (data.value?.statusCode !== 200) {
-        alert('Erro ao cadastrar funcionario!');
+        alert('Erro ao atulizar funcionario!');
         return;
     } 
     

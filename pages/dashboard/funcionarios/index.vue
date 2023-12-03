@@ -34,7 +34,7 @@ async function excluir(id: number) {
                                 <td>{{ funcionario.nome }}</td>
                                 <td>{{ funcionario.email }}</td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/funcionarios/${funcionario.id}`">
+                                    <nuxt-link :to="`/dashboard/funcionarios/editar/${funcionario.id}`">
                                         <font-awesome-icon icon="edit"></font-awesome-icon>
                                     </nuxt-link>
                                 </td>

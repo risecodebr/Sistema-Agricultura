@@ -3,16 +3,16 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const { id, nome, cnpj, telefone } = await readBody(event);
+  const { id, nome, email, password } = await readBody(event);
 
-  await prisma.fornecedor.update({
+  await prisma.funcionario.update({
     where: {
       id: id,
     },
     data: {
       nome: nome,
-      cnpj: cnpj,
-      telefone: telefone,
+      email: email,
+      password: password,
     },
   });
 
