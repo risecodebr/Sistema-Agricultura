@@ -1,16 +1,15 @@
 <script setup lang="ts">
-    let funcionarios = [
-        {
-            id: 1,
-            nome: "João",
-            email: "aaaaaaa2gmail.com",
-        },
-        {
-            id: 2,
-            nome: "Maria",
-            email: "aaaaaaa2gmail.com",
-        }
-    ];
+
+const { data: funcionarios, refresh } = await useFetch('/api/v1/funcionarios');
+
+async function excluir(id: number) {
+    await useFetch(`/api/v1/funcionarios/${id}`, {
+        method: 'DELETE',
+    });
+
+    refresh();
+}
+
 </script>
 <template>
     <NuxtLayout name="default">
@@ -19,7 +18,7 @@
                 <div class="col-12 table-responsive-sm">
                     <div class="d-flex">
                         <h1>Funcionarios</h1>
-                        <nuxt-link to="/dashboard/funcionarios/novo" class="btn btn-primary ms-auto">Novo</nuxt-link> 
+                        <nuxt-link to="/dashboard/funcionarios/novo" class="btn btn-primary ms-auto">Novo</nuxt-link>
                     </div>
                     <table class="table table-striped ">
                         <thead>
@@ -31,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="funcionario in funcionarios" :key="funcionario.id">
+                            <tr v-for="funcionario in funcionarios?.data" :key="funcionario.id">
                                 <td>{{ funcionario.nome }}</td>
                                 <td>{{ funcionario.email }}</td>
                                 <td>
@@ -40,9 +39,9 @@
                                     </nuxt-link>
                                 </td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/funcionarios/excluir/${funcionario.id}`">
+                                    <a @click="excluir(funcionario.id)">
                                         <font-awesome-icon icon="trash"></font-awesome-icon>
-                                    </nuxt-link>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,29 +1,33 @@
 <script setup lang="ts">
-    let fornecedores = [
-        {
-            id: 1,
-            nome: "João",
-            cnpj: "123456789",
-            telefone: "123456789",
-        },
-        {
-            id: 2,
-            nome: "Maria",
-            cnpj: "123456789",
-            telefone: "123456789",
-        }
-    ];
+
+const { data: fornecedores, refresh, pending } = await useFetch('/api/v1/fornecedores', {
+    lazy: true
+});
+
+async function excluir(id: number) {
+    await useFetch('/api/v1/fornecedores/' + id, {
+        method: 'DELETE',
+        body: JSON.stringify({ id })
+    });
+
+    refresh();
+}
+
 </script>
 <template>
     <NuxtLayout name="default">
         <div class="container mt-2">
             <div class="row">
                 <div class="col-12 table-responsive-sm">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                         <h1>Fornecedores</h1>
-                        <nuxt-link to="/dashboard/fornecedores/novo" class="btn btn-primary ms-auto">
-                            Novo
-                        </nuxt-link>
+                        <div>
+                            <font-awesome-icon @click="refresh" :icon="['fas', 'rotate']" class="cursor-pointer" size="2xl"
+                                style="color: #0d6efd;" />
+                            <NuxtLink to="/dashboard/fornecedores/novo" class="ms-2">
+                                <font-awesome-icon :icon="['fas', 'plus']" size="2xl" />
+                            </NuxtLink>
+                        </div>
                     </div>
                     <table class="table table-striped ">
                         <thead>
@@ -36,23 +40,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fornecedor in fornecedores" :key="fornecedor.id">
+                            <tr v-for="fornecedor in fornecedores?.data" :key="fornecedor.id">
                                 <td>{{ fornecedor.nome }}</td>
                                 <td>{{ fornecedor.cnpj }}</td>
                                 <td>{{ fornecedor.telefone }}</td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/fornecedores/${fornecedor.id}`">
-                                        <font-awesome-icon icon="edit"></font-awesome-icon>
-                                    </nuxt-link>
+                                    <NuxtLink :to="`/dashboard/fornecedores/editar/${fornecedor.id}`">
+                                        <font-awesome-icon icon="edit" />
+                                    </NuxtLink>
                                 </td>
                                 <td>
-                                    <nuxt-link :to="`/dashboard/fornecedores/excluir/${fornecedor.id}`">
-                                        <font-awesome-icon icon="trash"></font-awesome-icon>
-                                    </nuxt-link>
+                                    <a @click="excluir(fornecedor.id)">
+                                        <font-awesome-icon icon="trash" style="color: #0d6efd;" />
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="col-12" v-if="pending">
+                    <div class="d-flex justify-content-center">
+                        <font-awesome-icon icon="spinner" spin size="2x" />
+                    </div>
                 </div>
             </div>
         </div>

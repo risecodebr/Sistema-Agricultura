@@ -1,19 +1,20 @@
 <script setup lang="ts">
 
+const route = useRoute();
+
+const { data } = await useFetch("/api/v1/fornecedores/" + route.params.id);
+
 let form = {
-    nome: '',
-    cnpj: '',
-    telefone: '',
+    ...data.value.data
 }
 
 async function submit() {
-    await useFetch('/api/v1/fornecedores/create', {
-        method: 'POST',
+    await useFetch('/api/v1/fornecedores/update', {
+        method: 'PUT',
         body: JSON.stringify(form)
     });
 
     navigateTo('/dashboard/fornecedores');
-
 }
 </script>
 

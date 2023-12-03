@@ -1,22 +1,20 @@
 <script setup lang="ts">
+
+const route = useRoute();
+
+const { data: produto } = await useFetch(`/api/v1/produtos/${route.params.id}`);
+
 let form = {
-    codigo: '',
-    nome: '',
-    preco: 0,
-    quantidade: '',
-    descricao: '',
-    fornecedor_id: 0,
-    data_validade: '',
-    numero_pedido: '',
-    lote: ''
+    ...produto.value.data,
+    data_validade: new Date(produto.value.data.data_validade).toISOString().slice(0, 16),
 }
 
 const { data: fornecedores } = await useFetch('/api/v1/fornecedores');
 form.fornecedor_id = fornecedores?.value?.data[0]?.id || 0;
 
 async function submit() {
-    const { data } = await useFetch('/api/v1/produtos/create', {
-        method: 'POST',
+    const { data } = await useFetch('/api/v1/produtos/update', {
+        method: 'PUT',
         body: JSON.stringify(form)
     });
 
