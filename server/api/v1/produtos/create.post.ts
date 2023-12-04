@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     fornecedor_id,
   } = await readBody(event);
 
-  await prisma.produto.create({
+  let produto = await prisma.produto.create({
     data: {
       nome: nome,
       codigo: codigo,
@@ -32,5 +32,6 @@ export default defineEventHandler(async (event) => {
   return {
     statusCode: 200,
     statusMessage: "Produto criado com sucesso!",
+    data: produto,
   };
 });

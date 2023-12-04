@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   const { nome, cnpj, telefone } = await readBody(event);
 
-  await prisma.fornecedor.create({
+  let fornecedor = await prisma.fornecedor.create({
     data: {
       nome: nome,
       cnpj: cnpj,
@@ -16,5 +16,6 @@ export default defineEventHandler(async (event) => {
   return {
     statusCode: 200,
     statusMessage: "Fornecedor atualizado com sucesso!",
+    data: fornecedor,
   };
 });
