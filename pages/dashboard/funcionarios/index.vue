@@ -39,7 +39,7 @@ async function excluir(id: number) {
                                     </nuxt-link>
                                 </td>
                                 <td>
-                                    <a @click="excluir(funcionario.id)">
+                                    <a class="link" @click="excluir(funcionario.id)">
                                         <font-awesome-icon icon="trash"></font-awesome-icon>
                                     </a>
                                 </td>
