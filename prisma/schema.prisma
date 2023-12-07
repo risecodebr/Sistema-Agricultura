@@ -14,6 +14,7 @@ model Funcionario {
   id        Int      @id @default(autoincrement())
   nome      String
   email     String   @unique
+  id_fazenda  Int?
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -23,6 +24,7 @@ model Produto {
   id            Int        @id @default(autoincrement())
   nome          String
   codigo        String     @unique
+  id_fazenda    Int?
   descricao     String
   preco         Float
   lote          String
@@ -37,10 +39,16 @@ model Produto {
 
 model Fornecedor {
   id        Int       @id @default(autoincrement())
+  id_fazenda  Int?     
   nome      String
   cnpj      String    @unique
   telefone  String
   produtos  Produto[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Fazenda{
+  id        Int       @id @default(autoincrement()) 
+  nome      String
 }

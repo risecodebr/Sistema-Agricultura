@@ -27,6 +27,9 @@
                             <NuxtLink class="nav-link" to="/dashboard/relatorio">Relatorio</NuxtLink>
                         </li>
                         <li class="nav-item">
+                            <NuxtLink class="nav-link" to="/dashboard/configuracao">Configuração</NuxtLink>
+                        </li>
+                        <li class="nav-item">
                             <NuxtLink class="nav-link" to="/">Sair</NuxtLink>
                         </li>
                     </ul>
