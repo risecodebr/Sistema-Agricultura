@@ -6,7 +6,6 @@ let installPrompt = null;
 
 onMounted(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
-        console.log(e)
         e.preventDefault();
         installPrompt = e;
     });
@@ -31,7 +30,7 @@ async function installPwa() {
                 <div class="col-12">
                     <h1>Sistema Agricultura</h1>
                 </div>
-                <div class="mt-3" v-if="installPrompt">
+                <div class="mt-3" v-if="installPrompt !== null">
                     <button @click="installPwa" class="btn btn-primary">Instalar em meu Celular ou Computador</button>
                 </div>
             </div>
