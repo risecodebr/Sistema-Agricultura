@@ -1,25 +1,23 @@
 <script setup>
 
 
-let installPrompt = null;
+let installPrompt = ref(null);
 
 
 onMounted(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
-        installPrompt = e;
+        installPrompt.value = e;
     });
 });
 
 async function installPwa() {
-    console.log(installPrompt)
-    if (installPrompt) {
-        installPrompt.prompt();
+    if (installPrompt.value) {
+        installPrompt.value.prompt();
         const { outcome } = await installPrompt.userChoice;
     }
 
 }
-
 </script>
 
 
@@ -30,7 +28,7 @@ async function installPwa() {
                 <div class="col-12">
                     <h1>Sistema Agricultura</h1>
                 </div>
-                <div class="mt-3" v-if="installPrompt !== null">
+                <div class="mt-3">
                     <button @click="installPwa" class="btn btn-primary">Instalar em meu Celular ou Computador</button>
                 </div>
             </div>

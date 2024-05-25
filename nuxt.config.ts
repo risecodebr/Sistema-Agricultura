@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  nitro:{
-    experimental:{
-      openAPI: true
-    }
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
   },
   modules: ["@vite-pwa/nuxt", "nuxt-auth-utils"],
   pwa: {
@@ -23,20 +23,13 @@ export default defineNuxtConfig({
         },
       ],
     },
+    workbox: {
+      navigateFallback: undefined,
+    },
   },
-  workbox: {
-    navigateFallback: "/",
-  },
-  devOptions: {
-    enabled: true,
-    type: "module",
-  },
-  css:[
-    'bootstrap/dist/css/bootstrap.css',
-    '@fortawesome/fontawesome-svg-core/styles.css'
+  css: [
+    "bootstrap/dist/css/bootstrap.css",
+    "@fortawesome/fontawesome-svg-core/styles.css",
   ],
-  plugins: [
-    '~/plugins/useBootstrap.client.ts',
-    '~/plugins/font-awesome.ts',
-  ],
-}) 
+  plugins: ["~/plugins/useBootstrap.client.ts", "~/plugins/font-awesome.ts"],
+});
