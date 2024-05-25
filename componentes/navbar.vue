@@ -31,7 +31,7 @@ const { data } = await useFetch('/api/v1/configuracao');
                             <NuxtLink class="nav-link" to="/dashboard/produtos">Produtos</NuxtLink>
                         </li>
                         <li class="nav-item">
-                            <NuxtLink class="nav-link" to="/dashboard/relatorio">Relatorio</NuxtLink>
+                            <NuxtLink class="nav-link" to="/dashboard/relatorio">Relatorios E Backup</NuxtLink>
                         </li>
                         <li class="nav-item">
                             <NuxtLink class="nav-link" to="/dashboard/configuracao">Configuração</NuxtLink>

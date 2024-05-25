@@ -1,30 +1,24 @@
 import { PrismaClient } from "@prisma/client";
-import { format } from "@fast-csv/format";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const fazenda = await prisma.fazenda.findFirst();
-  const fornecedor = await prisma.fornecedor.findMany({
-    include: {
-      produtos: true,
-    },
-  });
+  const fazendas = await prisma.fazenda.findMany();
+  const fornecedores = await prisma.fornecedor.findMany();
+  const produtos = await prisma.produto.findMany();
+  const funcionarios = await prisma.funcionario.findMany();
 
-  const csv = format({ headers: true }).on("error", (error) =>
-    console.error(error)
-  );
-  setResponseHeader(event, "Content-Type", "text/csv");
+  setResponseHeader(event, "Content-Type", "text/json");
   setResponseHeader(
     event,
     "Content-Disposition",
-    `attachment; filename="${fazenda?.nome || "Fazenda"}.csv"`
+    `attachment; filename="backup.json"`
   );
 
-  fornecedor.forEach((item) => csv.write(item));
-
   return {
-    statusCode: 200,
-    data: fornecedor,
+    fazendas,
+    fornecedores,
+    produtos,
+    funcionarios,
   };
 });

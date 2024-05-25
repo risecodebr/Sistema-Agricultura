@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const { user } = useUserSession();
+
+if (user) {
+    navigateTo('/dashboard')
+}
 
 let form = {
     email: '',
@@ -31,7 +36,8 @@ async function submit() {
                     <h3 class="mb-3 font-weight-normal">Iniciar Sessão</h3>
                     <input type="email" class="form-control mb-3" v-model="form.email" placeholder="Email" required
                         autofocus>
-                    <input type="password" class="form-control mb-3" v-model="form.password" placeholder="Senha" required>
+                    <input type="password" class="form-control mb-3" v-model="form.password" placeholder="Senha"
+                        required>
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-primary" type="submit">Entrar</button>
                     </div>
