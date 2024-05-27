@@ -1,6 +1,11 @@
 <script setup>
 const { data } = await useFetch('/api/v1/configuracao');
 
+function logout() {
+    useUserSession().clear();
+    navigateTo('/');
+}
+
 </script>
 <template>
     <header>
@@ -37,7 +42,7 @@ const { data } = await useFetch('/api/v1/configuracao');
                             <NuxtLink class="nav-link" to="/dashboard/configuracao">Configuração</NuxtLink>
                         </li>
                         <li class="nav-item">
-                            <NuxtLink class="nav-link" to="/">Sair</NuxtLink>
+                            <a class="nav-link" @click="logout">Sair</a>
                         </li>
                     </ul>
                 </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { user } = useUserSession();
+const { loggedIn } = useUserSession();
 
-if (user) {
+if (loggedIn) {
     navigateTo('/dashboard')
 }
 
