@@ -42,7 +42,7 @@ function logout() {
                             <NuxtLink class="nav-link" to="/dashboard/configuracao">Configuração</NuxtLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" @click="logout">Sair</a>
+                            <button class="nav-link" @click="logout">Sair</button>
                         </li>
                     </ul>
                 </div>
